@@ -41,10 +41,10 @@
               <a href="https://yuhaosu.github.io">Yuhao Su</a><sup>1</sup>,
             </span>
             <span class="author-block">
-              Anwesa Choudhuri<sup>2</sup>,
+              Anwesa Choudhuri<sup>2*</sup>,
             </span>
             <span class="author-block">
-              Zhongpai Gao<sup>2</sup>,
+              Zhongpai Gao<sup>2*</sup>,
             </span>
             <span class="author-block">
               Benjamin Planche<sup>2</sup>,
@@ -56,7 +56,7 @@
               Meng Zheng<sup>2</sup>,
             </span>
             <span class="author-block">
-              Yuhan Shen<sup>2</sup>,
+              Yuhan Shen<sup>1</sup>,
             </span>
             <span class="author-block">
               Arun Innanje<sup>2</sup>,
@@ -65,10 +65,10 @@
               Terrence Chen<sup>2</sup>,
             </span>
             <span class="author-block">
-              <a href="https://www.khoury.northeastern.edu/home/eelhami/">Ehsan Elhamifar</a><sup>1</sup>,
+              <a href="https://www.khoury.northeastern.edu/home/eelhami/">Ehsan Elhamifar</a><sup>1†</sup>,
             </span>
             <span class="author-block">
-              Ziyan Wu<sup>2</sup>
+              Ziyan Wu<sup>2†</sup>
             </span>
           </div>
 
@@ -76,6 +76,10 @@
           <div class="is-size-5 publication-authors">
             <span class="author-block"><sup>1</sup>Northeastern University,</span>
             <span class="author-block"><sup>2</sup>United Imaging Intelligence</span>
+          </div>
+          <div class="is-size-6 publication-authors">
+            <span class="author-block"><sup>*</sup>Corresponding authors,</span>
+            <span class="author-block"><sup>†</sup>Co-last authors</span>
           </div>
 
           <!-- Links -->
@@ -101,7 +105,7 @@
               </span>
               <!-- Code Link -->
               <span class="link-block">
-                <a href="#" class="external-link button is-normal is-rounded is-dark">
+                <a href="https://github.com/YuhaoSu/MedGRPO" class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                     <i class="fab fa-github"></i>
                   </span>
@@ -116,23 +120,6 @@
   </div>
 </section>
 
-<!-- Teaser Image -->
-<section class="hero teaser">
-  <div class="container is-max-desktop">
-    <div class="hero-body">
-      <div class="has-text-centered">
-        <!-- Placeholder for teaser image -->
-        <div class="teaser-placeholder">
-          <p class="is-size-4 has-text-grey">Teaser Image Coming Soon</p>
-        </div>
-      </div>
-      <h2 class="subtitle has-text-centered">
-        <span class="medgrpo">MedGRPO</span> introduces a multi-task reinforcement learning framework for heterogeneous medical video understanding, achieving consistent improvements across 8 diverse tasks.
-      </h2>
-    </div>
-  </div>
-</section>
-
 <!-- Abstract -->
 <section class="section">
   <div class="container is-max-desktop">
@@ -141,104 +128,14 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            We introduce <strong>MedVidBench</strong>, a large-scale multi-task medical video understanding dataset with
-            <strong>531K video-instruction pairs</strong> covering <strong>8 diverse tasks</strong> spanning video-level,
-            segment-level, and frame-level understanding. This comprehensive benchmark enables systematic evaluation of
-            medical video understanding models across heterogeneous task types.
+            Large vision-language models struggle with medical video understanding, where spatial precision, temporal reasoning, and clinical semantics are critical. To address this, we first introduce <strong>MedVidBench</strong>, a large-scale benchmark of 531,850 video-instruction pairs across 8 medical sources spanning video, segment, and frame-level tasks, curated through a rigorous quality assurance pipeline with expert-guided prompting and dual-model validation.
           </p>
           <p>
-            Building on this dataset, we propose <strong>MedGRPO</strong>, a novel multi-task reinforcement learning
-            framework specifically designed for heterogeneous medical video tasks. Our approach features
-            <strong>cross-dataset reward normalization</strong> to ensure balanced training across different tasks and
-            datasets, along with a <strong>Medical LLM Judge</strong> for accurate evaluation of medical video caption quality.
+            While supervised fine-tuning on MedVidBench yields noticeable gains, standard Reinforcement Learning (RL) fails due to imbalanced reward scales across datasets, which destabilizes optimization and leads to training collapse. To overcome this, we introduce <strong>MedGRPO</strong>, a novel RL framework for balanced multi-dataset training with two key innovations: (1) <em>cross-dataset reward normalization</em> that maps each dataset's median performance to a common reward value, ensuring fair optimization regardless of difficulty, and (2) a <em>medical LLM judge</em> that evaluates caption quality on five clinical dimensions through comparative similarity scoring.
           </p>
           <p>
-            Compared to supervised fine-tuning (SFT) baselines, MedGRPO achieves consistent improvements across all 8 tasks,
-            including <strong>+0.074 mIoU@0.3</strong> on temporal action grounding and <strong>+0.588 LLM score</strong>
-            on video summary generation.
+            Supervised fine-tuning Qwen2.5-VL-7B on MedVidBench substantially outperforms GPT-4.1 and Gemini-2.5-Flash across all tasks, demonstrating MedVidBench's efficacy, while our MedGRPO framework further improves upon the SFT baseline across grounding and captioning tasks. Our work establishes a foundational benchmark and robust training methodology for advancing vision-language models in medical domains.
           </p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- MedVidBench Dataset -->
-<section class="section">
-  <div class="container is-max-desktop">
-    <h2 class="title is-3 has-text-centered">MedVidBench Dataset</h2>
-    <div class="columns is-centered">
-      <div class="column is-four-fifths">
-        <div class="content has-text-justified">
-          <ul>
-            <li><strong>531K video-instruction pairs</strong>: Large-scale dataset for medical video understanding</li>
-            <li><strong>8 diverse tasks</strong>: Covers video-level, segment-level, and frame-level understanding</li>
-            <li>Enables comprehensive evaluation of medical video models</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Method -->
-<section class="section">
-  <div class="container is-max-desktop">
-    <h2 class="title is-3 has-text-centered">MedGRPO Framework</h2>
-    <div class="columns is-centered">
-      <div class="column is-four-fifths">
-        <div class="content has-text-justified">
-          <ul>
-            <li><strong>Multi-Task Reinforcement Learning</strong>: Novel RL framework designed for heterogeneous medical video tasks</li>
-            <li><strong>Cross-Dataset Reward Normalization</strong>: Ensures balanced training across different tasks and datasets</li>
-            <li><strong>Medical LLM Judge</strong>: Specialized evaluation for medical video caption quality</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Results -->
-<section class="section">
-  <div class="container is-max-desktop">
-    <h2 class="title is-3 has-text-centered">Results</h2>
-    <div class="columns is-centered">
-      <div class="column is-four-fifths">
-        <div class="content has-text-centered">
-          <p>Compared to supervised fine-tuning (SFT) baseline:</p>
-          <div class="columns is-centered">
-            <div class="column is-one-third">
-              <div class="box has-background-light">
-                <p class="is-size-2 has-text-weight-bold has-text-primary">+0.074</p>
-                <p>mIoU@0.3 on temporal action grounding</p>
-              </div>
-            </div>
-            <div class="column is-one-third">
-              <div class="box has-background-light">
-                <p class="is-size-2 has-text-weight-bold has-text-primary">+0.588</p>
-                <p>LLM score on video summary</p>
-              </div>
-            </div>
-          </div>
-          <p class="mt-4">Consistent improvements across all 8 tasks</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Video Section (Placeholder) -->
-<section class="section">
-  <div class="container is-max-desktop">
-    <h2 class="title is-3 has-text-centered">Demo Video</h2>
-    <div class="columns is-centered">
-      <div class="column is-four-fifths">
-        <div class="publication-video">
-          <!-- Placeholder for video -->
-          <div class="video-placeholder has-text-centered">
-            <p class="is-size-5 has-text-grey">Demo Video Coming Soon</p>
-          </div>
         </div>
       </div>
     </div>
@@ -262,21 +159,9 @@
 <footer class="footer">
   <div class="container">
     <div class="content has-text-centered">
-      <a class="icon-link" href="#">
-        <i class="fas fa-file-pdf"></i>
-      </a>
-      <a class="icon-link" href="#" class="external-link">
+      <a class="icon-link" href="https://github.com/YuhaoSu/MedGRPO" class="external-link">
         <i class="fab fa-github"></i>
       </a>
-    </div>
-    <div class="columns is-centered">
-      <div class="column is-8">
-        <div class="content has-text-centered">
-          <p>
-            This website template is borrowed from <a href="https://nerfies.github.io">Nerfies</a>.
-          </p>
-        </div>
-      </div>
     </div>
   </div>
 </footer>
