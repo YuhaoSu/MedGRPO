@@ -13,15 +13,20 @@ Large vision-language models struggle with medical video understanding, where sp
 
 While supervised fine-tuning on MedVidBench yields noticeable gains, standard Reinforcement Learning (RL) fails due to imbalanced reward scales across datasets, which destabilizes optimization and leads to training collapse. To overcome this, we introduce **MedGRPO**, a novel RL framework for balanced multi-dataset training with two key innovations: (1) *cross-dataset reward normalization* that maps each dataset's median performance to a common reward value, ensuring fair optimization regardless of difficulty, and (2) a *medical LLM judge* that evaluates caption quality on five clinical dimensions through comparative similarity scoring.
 
-Supervised fine-tuning Qwen2.5-VL-7B on MedVidBench substantially outperforms GPT-4.1 and Gemini-2.5-Flash across all tasks, demonstrating MedVidBench's efficacy, while our MedGRPO framework further improves upon the SFT baseline across grounding and captioning tasks. Our work establishes a foundational benchmark and robust training methodology for advancing vision-language models in medical domains.
+Supervised fine-tuning on MedVidBench consistently outperforms frontier models — including GPT-4.1, Gemini-2.5-Flash, GPT-5.4, and Gemini-3.1-flash-lite — across all tasks, while MedGRPO further improves the SFT baseline on grounding and captioning. We validate our approach across multiple model families (Qwen2.5VL-7B, Qwen3-VL-4B, Qwen3.5-4B), demonstrating that MedGRPO generalizes across architectures and scales. Our work establishes a foundational benchmark and robust training methodology for advancing vision-language models in medical domains.
 
 ## Citation
 
 ```bibtex
-@article{su2025medgrpo,
-  title={MedGRPO: Multi-Task Reinforcement Learning for Heterogeneous Medical Video Understanding},
-  author={Su, Yuhao and Choudhuri, Anwesa and Gao, Zhongpai and Planche, Benjamin and Nguyen, Van Nguyen and Zheng, Meng and Shen, Yuhan and Innanje, Arun and Chen, Terrence and Elhamifar, Ehsan and Wu, Ziyan},
-  journal={arXiv preprint arXiv:XXXX.XXXXX},
-  year={2025}
+@inproceedings{su2026medgrpo,
+  title={{MedGRPO}: Multi-Task Reinforcement Learning for
+         Heterogeneous Medical Video Understanding},
+  author={Su, Yuhao and Choudhuri, Anwesa and Gao, Zhongpai and
+          Planche, Benjamin and Nguyen, Van Nguyen and Zheng, Meng and
+          Shen, Yuhan and Innanje, Arun and Chen, Terrence and
+          Elhamifar, Ehsan and Wu, Ziyan},
+  booktitle={Proceedings of the IEEE/CVF Conference on Computer
+             Vision and Pattern Recognition (CVPR)},
+  year={2026}
 }
 ```
