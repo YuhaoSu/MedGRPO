@@ -1,6 +1,11 @@
 # MedGRPO: Multi-Task Reinforcement Learning for Heterogeneous Medical Video Understanding
 
-[Project Page](https://yuhaosu.github.io/MedGRPO/)
+[![Project Page](https://img.shields.io/badge/Project-Page-blue)](https://yuhaosu.github.io/MedGRPO/)
+[![Code](https://img.shields.io/badge/GitHub-Code-black?logo=github)](https://github.com/UII-AI/MedGRPO-Code)
+[![Model](https://img.shields.io/badge/🤗-Model-yellow)](https://huggingface.co/UII-AI/uAI-NEXUS-MedVLM-1.0a-7B-RL)
+[![Demo](https://img.shields.io/badge/🤗-Demo-yellow)](https://huggingface.co/spaces/UII-AI/MedGRPO-Demo)
+[![Benchmark](https://img.shields.io/badge/🤗-MedVidBench-yellow)](https://huggingface.co/datasets/UII-AI/MedVidBench)
+[![Leaderboard](https://img.shields.io/badge/🤗-Leaderboard-yellow)](https://huggingface.co/spaces/UII-AI/MedVidBench-Leaderboard)
 
 ## Abstract
 
